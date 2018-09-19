@@ -1,3 +1,4 @@
+import { DynamicComponent } from './model/model.component';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,6 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  public data = {
+    component: DynamicComponent,
+    title: 'Mahipal'
+  };
   constructor() {
 
   }

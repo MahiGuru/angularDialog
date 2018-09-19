@@ -10,12 +10,14 @@ export class ModelDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<ModelDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+       @Inject(MAT_DIALOG_DATA) public data: any) {
+      }
 
-  ngOnInit() {
-  }
-  close() {
-    this.dialogRef.close(this.data);
-  }
+    ngOnInit() {
+      console.log('INSIDE DATA ', this.data);
+    }
+    close() {
+      this.dialogRef.close(this.data);
+    }
 
 }

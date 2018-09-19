@@ -10,20 +10,18 @@ import { Observable } from 'rxjs';
 })
 export class ModelComponent implements OnInit {
   public animal: Observable<string>;
+  @Input() mydata: any;
   @Output() closeDialog: EventEmitter<any> = new EventEmitter();
   constructor(public dialog: MatDialog) {
     this.animal = new Observable();
   }
   ngOnInit() {
-    this.animal.subscribe(val => {
-      console.log(val);
-    });
 
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(ModelDialogComponent, {
       width: '250px',
-      data: { component: DynamicComponent, title: 'Mahipal', age: 32 }
+      data: { component: this.mydata.component, title: 'Mahipal', age: 32 }
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');

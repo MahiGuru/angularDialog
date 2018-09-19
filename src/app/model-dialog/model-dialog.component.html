@@ -5,8 +5,9 @@
     <button *ngIf="data.yesText" mat-button [mat-dialog-close]="data" [innerHTML]="data.yesText"></button>
 </mat-dialog-actions>
 -->
+
 <h2 mat-dialog-title>MyTitle</h2>
-<mat-dialog-content>
+<mat-dialog-content *ngIf="data">
     <ng-container *ngComponentOutlet="data.component"></ng-container>
 </mat-dialog-content>
 <mat-dialog-actions>
