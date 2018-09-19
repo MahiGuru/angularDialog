@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angularTest';
+  constructor() {
+
+  }
+  public closeDailog(val) {
+      console.log('APP COMPONENT ', val);
+    }
+
 }
