@@ -1,7 +1,9 @@
+import { ModelConfig } from './config.model';
 import { ModelDialogComponent } from './../model-dialog/model-dialog.component';
 import { Component, OnInit, Input, EventEmitter, Output, ContentChild, AfterViewInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Observable } from 'rxjs';
+import { FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-model',
@@ -10,48 +12,45 @@ import { Observable } from 'rxjs';
 })
 export class ModelComponent implements OnInit {
   public animal: Observable<string>;
-  @Input() mydata: any;
+  @Input() config: ModelConfig;
+  @Input() autoFocus: boolean;
+  @Input() disableClose: boolean;
+  @Input() height: any;
+  @Input() id: string;
+  @Input() width: any;
+  @Input() leftBtnText: string;
+  @Input() rightBtnText: string;
+
   @Output() closeDialog: EventEmitter<any> = new EventEmitter();
+
   constructor(public dialog: MatDialog) {
-    this.animal = new Observable();
+    this.autoFocus = false;
+    this.disableClose = false;
+
   }
   ngOnInit() {
 
   }
   openDialog(): void {
+    console.log(this.disableClose, this.height, this.width);
     const dialogRef = this.dialog.open(ModelDialogComponent, {
-      width: '250px',
-      data: { component: this.mydata.component, title: 'Mahipal', age: 32 }
+      autoFocus: this.autoFocus,
+      disableClose: this.disableClose,
+      height: this.height,
+      width: this.width,
+      id: this.id,
+      data: {
+        component: this.config.component,
+        title: this.config.title,
+        leftBtnText: this.config.leftBtnText,
+        rightBtnText: this.config.rightBtnText
+      }
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      console.log('The dialog was closed', result);
       this.animal = result;
       this.closeDialog.emit(this.animal);
     });
   }
-
-}
-
-@Component({
-  selector: 'app-dynamic-comp',
-  template: `
-  <div class="example-container">
-      <mat-form-field>
-        <input matInput placeholder="Input">
-      </mat-form-field>
-
-      <mat-form-field>
-        <textarea matInput placeholder="Textarea"></textarea>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-select placeholder="Select">
-          <mat-option value="option">Option</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-  `
-})
-export class DynamicComponent {
 
 }

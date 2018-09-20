@@ -1,5 +1,5 @@
-import { DynamicComponent } from './model/model.component';
 import { Component } from '@angular/core';
+import { DynamicComponent } from './model/dynamic.component';
 
 @Component({
   selector: 'app-root',
@@ -9,13 +9,15 @@ import { Component } from '@angular/core';
 export class AppComponent {
   public data = {
     component: DynamicComponent,
-    title: 'Mahipal'
+    title: 'My Dialog',
+    leftBtnText: 'Close',
+    rightBtnText: 'OK'
   };
   constructor() {
 
   }
   public closeDailog(val) {
-      console.log('APP COMPONENT ', val);
-    }
+    console.log('APP COMPONENT ', val);
+  }
 
 }
